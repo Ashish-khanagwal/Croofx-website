@@ -18,10 +18,12 @@ export default function Home() {
       body: JSON.stringify({
         first_name: firstName,
         last_name: lastName,
-        country: country,
-        email: email,
+        country,
+        email,
       }),
     });
+
+    const data = await res.json();
 
     if (res.ok) {
       setStatus("You're on the list.");
@@ -30,7 +32,7 @@ export default function Home() {
       setCountry("");
       setEmail("");
     } else {
-      setStatus("Something went wrong.");
+      setStatus(data.error || "Something went wrong.");
     }
   };
 

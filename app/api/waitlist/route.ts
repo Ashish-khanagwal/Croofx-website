@@ -13,7 +13,18 @@ export async function POST(req: Request) {
     .insert([{ first_name, last_name, country, email }]);
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    // Postgres duplicate email error
+    if (error.code === "23505") {
+      return NextResponse.json(
+        { error: "You are already on the waitlist." },
+        { status: 409 },
+      );
+    }
+
+    return NextResponse.json(
+      { error: "Something went wrong." },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({ success: true });
