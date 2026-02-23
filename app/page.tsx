@@ -116,80 +116,109 @@ export default function Home() {
             onClick={() => setIsNavOpen((open) => !open)}
             aria-label="Toggle navigation menu"
           >
-            <span className="h-[1px] w-6 bg-white" />
-            <span className="h-[1px] w-6 bg-white" />
-            <span className="h-[1px] w-6 bg-white" />
+            <span
+              className={`block h-[2px] w-6 bg-white transition-transform duration-300 ${
+                isNavOpen ? "translate-y-[6px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-6 bg-white transition-opacity duration-300 ${
+                isNavOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-6 bg-white transition-transform duration-300 ${
+                isNavOpen ? "-translate-y-[6px] -rotate-45" : ""
+              }`}
+            />
           </button>
         </div>
       </nav>
+      {/* Mobile / tablet full-screen menu */}
+      <div
+        className={`fixed inset-0 z-40 bg-gradient-to-b from-[#0B1020] to-[#070B16] transform transition-transform duration-300 ease-out ${
+          isNavOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-full pointer-events-none"
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 py-4">
+          <Link href="/" onClick={() => setIsNavOpen(false)}>
+            <Image src="/croovi.png" alt="Croovi" width={140} height={40} />
+          </Link>
 
-      {isNavOpen && (
-        <div className="px-8 pt-4 pb-6">
-          <div className="flex flex-col items-end gap-4 text-right">
-            <a
-              href="https://github.com/croovi-org"
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
-              style={{
-                fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                fontSize: "15px",
-                fontWeight: 400,
-                lineHeight: "21px",
-              }}
-            >
-              GitHub
-            </a>
-
-            <a
-              href="https://github.com/croovi-org/croofx"
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
-              style={{
-                fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                fontSize: "15px",
-                fontWeight: 400,
-                lineHeight: "21px",
-              }}
-            >
-              Croofx
-            </a>
-
-            <a
-              href="https://ashishkhanagwal.bio.link/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
-              style={{
-                fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                fontSize: "15px",
-                fontWeight: 400,
-                lineHeight: "21px",
-              }}
-            >
-              Founder
-            </a>
-
-            <button
-              onClick={() => {
-                setIsNavOpen(false);
-                scrollToCroofx();
-              }}
-              className="mt-2 px-5 py-2 rounded-md border border-white/20 hover:border-purple-500 transition"
-            >
-              Join Waitlist
-            </button>
-          </div>
+          <button
+            onClick={() => setIsNavOpen(false)}
+            aria-label="Close navigation menu"
+            className="p-2"
+          >
+            <span className="block h-[2px] w-6 bg-white rotate-45 translate-y-[1px]" />
+            <span className="block h-[2px] w-6 bg-white -rotate-45 -translate-y-[1px]" />
+          </button>
         </div>
-      )}
+
+        <div className="mt-8 px-6 flex flex-col gap-6 text-left">
+          <a
+            href="https://github.com/croovi-org"
+            target="_blank"
+            rel="noreferrer"
+            className="text-base text-white/90"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "15px",
+              fontWeight: 400,
+              lineHeight: "21px",
+            }}
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://github.com/croovi-org/croofx"
+            target="_blank"
+            rel="noreferrer"
+            className="text-base text-white/90"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "15px",
+              fontWeight: 400,
+              lineHeight: "21px",
+            }}
+          >
+            Croofx
+          </a>
+
+          <a
+            href="https://ashishkhanagwal.bio.link/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-base text-white/90"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "15px",
+              fontWeight: 400,
+              lineHeight: "21px",
+            }}
+          >
+            Founder
+          </a>
+
+          <button
+            onClick={() => {
+              setIsNavOpen(false);
+              scrollToCroofx();
+            }}
+            className="mt-6 w-full px-4 py-3 rounded-md border border-white/20 text-white hover:border-purple-500 transition"
+          >
+            Join Waitlist
+          </button>
+        </div>
+      </div>
 
       {/* CROOVI SECTION */}
-      <section className="px-6 py-32">
+      <section className="px-6 py-24 md:py-32">
         <div className="max-w-6xl mx-auto flex flex-col gap-12 md:flex-row md:items-center md:justify-between md:gap-10">
           <div className="text-center md:text-left md:w-2/3">
             <h1
-              className="text-white text-[64px] leading-[70.4px] font-bold tracking-tight"
+              className="text-white text-4xl sm:text-5xl md:text-[64px] leading-tight md:leading-[70.4px] font-bold tracking-tight"
               style={{ fontFamily: '"Anthropic Sans", Arial, sans-serif' }}
             >
             Croovi builds deterministic AI infrastructure.
@@ -205,7 +234,7 @@ export default function Home() {
 
           <div className="text-center md:text-left md:w-1/2 md:pt-3">
             <p
-              className="text-white/60 text-[24px] leading-[33.6px] font-normal"
+              className="text-white/60 text-base sm:text-lg md:text-[24px] md:leading-[33.6px] font-normal"
               style={{ fontFamily: '"Anthropic Serif", Georgia, sans-serif' }}
             >
               Croovi develops execution layers that make AI reliable across
