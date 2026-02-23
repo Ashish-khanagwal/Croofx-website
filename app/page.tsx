@@ -7,9 +7,6 @@ import { useRef, useState } from "react";
 export default function Home() {
   const croofxRef = useRef<HTMLDivElement>(null);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -28,9 +25,6 @@ export default function Home() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        country,
         email,
       }),
     });
@@ -39,9 +33,6 @@ export default function Home() {
 
     if (res.ok) {
       setStatus("You're on the waitlist.");
-      setFirstName("");
-      setLastName("");
-      setCountry("");
       setEmail("");
     } else {
       setStatus(data.error || "Something went wrong.");
@@ -271,30 +262,6 @@ export default function Home() {
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  type="text"
-                  placeholder="First Name"
-                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
-                />
-
-                <input
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  type="text"
-                  placeholder="Last Name"
-                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
-                />
-
-                <input
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  type="text"
-                  placeholder="Country"
-                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
-                />
-
                 <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

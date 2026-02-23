@@ -2,15 +2,24 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
 export async function POST(req: Request) {
-  const { first_name, last_name, country, email } = await req.json();
+  const { email } = await req.json();
 
-  if (!first_name || !last_name || !country || !email) {
-    return NextResponse.json({ error: "All fields required" }, { status: 400 });
+  if (!email) {
+    return NextResponse.json(
+      { error: "Email is required" },
+      { status: 400 },
+    );
   }
 
-  const { error } = await supabase
-    .from("waitlist")
-    .insert([{ first_name, last_name, country, email }]);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return NextResponse.json(
+      { error: "Please enter a valid email address." },
+      { status: 400 },
+    );
+  }
+
+  const { error } = await supabase.from("waitlist").insert([{ email }]);
 
   if (error) {
     // Postgres duplicate email error
