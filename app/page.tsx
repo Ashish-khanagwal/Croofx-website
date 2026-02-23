@@ -1,20 +1,31 @@
 "use client";
-import { useState } from "react";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useRef, useState } from "react";
 
 export default function Home() {
+  const croofxRef = useRef<HTMLDivElement>(null);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e: any) => {
+  const scrollToCroofx = () => {
+    croofxRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("Joining...");
+    setStatus("Submitting...");
 
     const res = await fetch("/api/waitlist", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         first_name: firstName,
         last_name: lastName,
@@ -26,7 +37,7 @@ export default function Home() {
     const data = await res.json();
 
     if (res.ok) {
-      setStatus("You're on the list.");
+      setStatus("You're on the waitlist.");
       setFirstName("");
       setLastName("");
       setCountry("");
@@ -37,82 +48,172 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
-      {/* Brand */}
-      <h1 className="text-6xl sm:text-7xl font-bold tracking-tight mb-8">
-        Croofx
-      </h1>
+    <main className="min-h-screen bg-gradient-to-b from-[#0B1020] via-[#0B1020] to-[#070B16] text-white">
+      {/* NAV */}
+      <nav className="flex items-center justify-between px-8 -mt-10 -mb-8 max-w-7xl mx-auto">
+        <Link href="/">
+          <Image src="/croovi.png" alt="Croovi" width={200} height={10} />
+        </Link>
 
-      {/* Main Heading */}
-      <h2 className="text-2xl sm:text-4xl font-semibold text-center max-w-3xl leading-tight mb-6">
-        Run AI on real repositories - without losing control.
-      </h2>
+        <div className="flex items-center gap-6">
 
-      {/* Subheading */}
-      <p className="text-gray-400 text-lg text-center max-w-3xl mb-4 leading-relaxed">
-        Croofx analyzes your project structure, sends only relevant context to
-        LLMs, validates every generated patch, and prevents unnecessary token
-        waste.
-      </p>
+          <a
+            href="https://github.com/croovi-org"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "15px",
+              fontWeight: 400,
+              lineHeight: "21px",
+            }}
+          >
+            GitHub
+          </a>
 
-      <p className="text-gray-500 text-md text-center mb-10">
-        AI generates. Croofx makes it production-ready.
-      </p>
+          <a
+            href="https://github.com/croovi-org/croofx"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "15px",
+              fontWeight: 400,
+              lineHeight: "21px",
+            }}
+          >
+            Croofx
+          </a>
 
-      {/* Waitlist Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 w-full max-w-md"
-      >
-        {/* First Name */}
-        <input
-          type="text"
-          required
-          placeholder="First Name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          className="px-4 py-3 rounded bg-gray-900 border border-gray-700 w-full focus:outline-none focus:border-white"
-        />
+          <a
+            href="https://ashishkhanagwal.bio.link/"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "15px",
+              fontWeight: 400,
+              lineHeight: "21px",
+            }}
+          >
+            Founder
+          </a>
 
-        {/* Last Name */}
-        <input
-          type="text"
-          required
-          placeholder="Last Name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          className="px-4 py-3 rounded bg-gray-900 border border-gray-700 w-full focus:outline-none focus:border-white"
-        />
+          <button
+            onClick={scrollToCroofx}
+            className="px-5 py-2 rounded-md border border-white/20 hover:border-purple-500 transition"
+          >
+            Join Waitlist
+          </button>
+        </div>
+      </nav>
 
-        {/* Country */}
-        <input
-          type="text"
-          required
-          placeholder="Country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-          className="px-4 py-3 rounded bg-gray-900 border border-gray-700 w-full focus:outline-none focus:border-white"
-        />
+      {/* CROOVI SECTION */}
+      <section className="px-6 py-32">
+        <div className="max-w-6xl mx-auto flex flex-col gap-12 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="text-center md:text-left md:w-2/3">
+            <h1
+              className="text-white text-[64px] leading-[70.4px] font-bold tracking-tight"
+              style={{ fontFamily: '"Anthropic Sans", Arial, sans-serif' }}
+            >
+            Croovi builds deterministic AI infrastructure.
+            </h1>
 
-        {/* Email */}
-        <input
-          type="email"
-          required
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="px-4 py-3 rounded bg-gray-900 border border-gray-700 w-full focus:outline-none focus:border-white"
-        />
+            <p
+              className="mt-6 text-lg text-white/70"
+              style={{ fontFamily: '"Anthropic Sans", Arial, sans-serif' }}
+            >
+              Systems built to make complex industries simple and reliable.
+            </p>
+          </div>
 
-        <button
-          type="submit"
-          className="px-6 py-3 bg-white text-black rounded font-semibold hover:opacity-90 transition"
-        >
-          Join Waitlist
-        </button>
-      </form>
+          <div className="text-center md:text-left md:w-1/2 md:pt-3">
+            <p
+              className="text-white/60 text-[24px] leading-[33.6px] font-normal"
+              style={{ fontFamily: '"Anthropic Serif", Georgia, sans-serif' }}
+            >
+              Croovi develops execution layers that make AI reliable across
+              real-world software environments structured, validated, and
+              governed.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <p className="mt-4 text-gray-500 text-sm">{status}</p>
+      {/* CROOFX SECTION */}
+      <section ref={croofxRef} className="px-6 py-20">
+        <div className="max-w-6xl mx-auto rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.6)] overflow-hidden">
+          <div className="px-8 py-16 md:px-16 md:py-20 text-center">
+            <h1 className="text-7xl md:text-7xl font-semibold">Croofx</h1>
+
+            <h3 className="mt-6 text-2xl md:text-3xl font-semibold">
+              Run AI on real repositories without losing control.
+            </h3>
+
+            <p className="mt-8 text-base md:text-lg text-white/70 max-w-3xl mx-auto">
+              Croofx analyzes your project structure, sends only relevant context to LLMs,
+              validates every generated patch, and prevents unnecessary token waste.
+            </p>
+
+            <p className="mt-4 text-sm md:text-base text-white/60 max-w-2xl mx-auto">
+              AI generates. Croofx makes it production-ready.
+            </p>
+
+            {/* WAITLIST CARD */}
+            <div className="mt-16 max-w-xl mx-auto bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-[0_0_40px_rgba(139,92,246,0.15)]">
+              <h3 className="text-xl font-medium mb-6">
+                Join the Croofx Waitlist
+              </h3>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  type="text"
+                  placeholder="First Name"
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
+                />
+
+                <input
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  type="text"
+                  placeholder="Last Name"
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
+                />
+
+                <input
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  type="text"
+                  placeholder="Country"
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
+                />
+
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Email"
+                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
+                />
+
+                <button
+                  type="submit"
+                  className="w-full mt-4 px-4 py-3 rounded-md bg-white text-black font-medium hover:bg-purple-500 hover:text-white transition"
+                >
+                  Join Waitlist
+                </button>
+              </form>
+
+              {status && <p className="mt-4 text-sm text-white/70">{status}</p>}
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
