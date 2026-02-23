@@ -12,6 +12,7 @@ export default function Home() {
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const scrollToCroofx = () => {
     croofxRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -55,61 +56,133 @@ export default function Home() {
           <Image src="/croovi.png" alt="Croovi" width={200} height={10} />
         </Link>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
+          <div className="nav-links flex items-center gap-6">
+            <a
+              href="https://github.com/croovi-org"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "21px",
+              }}
+            >
+              GitHub
+            </a>
 
-          <a
-            href="https://github.com/croovi-org"
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm text-white/80 hover:underline underline-offset-4 transition"
-            style={{
-              fontFamily: '"Anthropic Sans", Arial, sans-serif',
-              fontSize: "15px",
-              fontWeight: 400,
-              lineHeight: "21px",
-            }}
-          >
-            GitHub
-          </a>
+            <a
+              href="https://github.com/croovi-org/croofx"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "21px",
+              }}
+            >
+              Croofx
+            </a>
 
-          <a
-            href="https://github.com/croovi-org/croofx"
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm text-white/80 hover:underline underline-offset-4 transition"
-            style={{
-              fontFamily: '"Anthropic Sans", Arial, sans-serif',
-              fontSize: "15px",
-              fontWeight: 400,
-              lineHeight: "21px",
-            }}
-          >
-            Croofx
-          </a>
+            <a
+              href="https://ashishkhanagwal.bio.link/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "21px",
+              }}
+            >
+              Founder
+            </a>
 
-          <a
-            href="https://ashishkhanagwal.bio.link/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm text-white/80 hover:underline underline-offset-4 transition"
-            style={{
-              fontFamily: '"Anthropic Sans", Arial, sans-serif',
-              fontSize: "15px",
-              fontWeight: 400,
-              lineHeight: "21px",
-            }}
-          >
-            Founder
-          </a>
+            <button
+              onClick={scrollToCroofx}
+              className="px-5 py-2 rounded-md border border-white/20 hover:border-purple-500 transition"
+            >
+              Join Waitlist
+            </button>
+          </div>
 
           <button
-            onClick={scrollToCroofx}
-            className="px-5 py-2 rounded-md border border-white/20 hover:border-purple-500 transition"
+            className="nav-menu-button flex flex-col gap-1 items-end p-2"
+            onClick={() => setIsNavOpen((open) => !open)}
+            aria-label="Toggle navigation menu"
           >
-            Join Waitlist
+            <span className="h-[1px] w-6 bg-white" />
+            <span className="h-[1px] w-6 bg-white" />
+            <span className="h-[1px] w-6 bg-white" />
           </button>
         </div>
       </nav>
+
+      {isNavOpen && (
+        <div className="px-8 pt-4 pb-6">
+          <div className="flex flex-col items-end gap-4 text-right">
+            <a
+              href="https://github.com/croovi-org"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "21px",
+              }}
+            >
+              GitHub
+            </a>
+
+            <a
+              href="https://github.com/croovi-org/croofx"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "21px",
+              }}
+            >
+              Croofx
+            </a>
+
+            <a
+              href="https://ashishkhanagwal.bio.link/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-white/80 hover:underline underline-offset-4 transition"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "15px",
+                fontWeight: 400,
+                lineHeight: "21px",
+              }}
+            >
+              Founder
+            </a>
+
+            <button
+              onClick={() => {
+                setIsNavOpen(false);
+                scrollToCroofx();
+              }}
+              className="mt-2 px-5 py-2 rounded-md border border-white/20 hover:border-purple-500 transition"
+            >
+              Join Waitlist
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* CROOVI SECTION */}
       <section className="px-6 py-32">
