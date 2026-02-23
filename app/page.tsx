@@ -10,6 +10,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const scrollToCroofx = () => {
     croofxRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -32,10 +33,12 @@ export default function Home() {
     const data = await res.json();
 
     if (res.ok) {
-      setStatus("You're on the waitlist.");
+      setStatus("");
+      setShowToast(true);
       setEmail("");
     } else {
       setStatus(data.error || "Something went wrong.");
+      setShowToast(false);
     }
   };
 
@@ -261,20 +264,25 @@ export default function Home() {
                 Join the Croofx Waitlist
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                  placeholder="Email"
-                  className="w-full px-4 py-3 rounded-md bg-white/5 border border-white/10 focus:outline-none focus:border-purple-500"
-                />
+              <form
+                onSubmit={handleSubmit}
+                className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-stretch"
+              >
+                <div className="flex-1 rounded-full bg-black/40 border border-white/15 overflow-hidden flex items-center">
+                  <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="Your Email Address"
+                    className="w-full bg-transparent px-5 py-3 text-sm sm:text-base focus:outline-none placeholder:text-white/50"
+                  />
+                </div>
 
                 <button
                   type="submit"
-                  className="w-full mt-4 px-4 py-3 rounded-md bg-white text-black font-medium hover:bg-purple-500 hover:text-white transition"
+                  className="sm:ml-3 px-6 py-3 rounded-full bg-white text-black text-sm sm:text-base font-medium whitespace-nowrap hover:bg-purple-500 hover:text-white transition"
                 >
-                  Join Waitlist
+                  Get Notified
                 </button>
               </form>
 
@@ -283,6 +291,33 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Success toast */}
+      <div
+        className={`fixed inset-x-0 bottom-6 z-50 flex justify-center px-4 transition-all duration-300 ${
+          showToast ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="max-w-md w-full bg-black border border-white/15 rounded-2xl px-5 py-4 flex items-center gap-4 shadow-lg">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black text-xl">
+            ✦
+          </div>
+
+          <div className="flex-1 text-left">
+            <p className="text-sm font-semibold">Congratulations!</p>
+            <p className="text-xs text-white/70">
+              You'll be notified when we're live.
+            </p>
+          </div>
+
+          <button
+            onClick={() => setShowToast(false)}
+            className="px-4 py-2 rounded-xl bg-white text-black text-xs font-medium hover:bg-purple-500 hover:text-white transition"
+          >
+            Okay
+          </button>
+        </div>
+      </div>
     </main>
   );
 }
