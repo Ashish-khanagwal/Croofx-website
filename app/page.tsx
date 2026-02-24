@@ -161,17 +161,17 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="mt-8 px-6 flex flex-col gap-6 text-left">
+          <div className="mt-7 px-6 flex flex-col text-left divide-y divide-white/10">
             <a
               href="https://github.com/croovi-org"
               target="_blank"
               rel="noreferrer"
-              className="text-base text-white/90"
+              className="py-4 text-white/95"
               style={{
                 fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                fontSize: "15px",
-                fontWeight: 400,
-                lineHeight: "21px",
+                fontSize: "24px",
+                fontWeight: 800,
+                lineHeight: "30px",
               }}
             >
               GitHub
@@ -181,12 +181,12 @@ export default function Home() {
               href="https://github.com/croovi-org/croofx"
               target="_blank"
               rel="noreferrer"
-              className="text-base text-white/90"
+              className="py-4 text-white/95"
               style={{
                 fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                fontSize: "15px",
-                fontWeight: 400,
-                lineHeight: "21px",
+                fontSize: "24px",
+                fontWeight: 800,
+                lineHeight: "30px",
               }}
             >
               Croofx
@@ -196,12 +196,12 @@ export default function Home() {
               href="https://ashishkhanagwal.bio.link/"
               target="_blank"
               rel="noreferrer"
-              className="text-base text-white/90"
+              className="py-4 text-white/95"
               style={{
                 fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                fontSize: "15px",
-                fontWeight: 400,
-                lineHeight: "21px",
+                fontSize: "24px",
+                fontWeight: 800,
+                lineHeight: "30px",
               }}
             >
               Founder
