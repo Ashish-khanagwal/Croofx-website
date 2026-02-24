@@ -88,7 +88,7 @@ export default function Home() {
                   lineHeight: "21px",
                 }}
               >
-                Croofx
+                CrooFx
               </a>
 
               <a
@@ -189,7 +189,7 @@ export default function Home() {
                 lineHeight: "30px",
               }}
             >
-              Croofx
+              CrooFx
             </a>
 
             <a
