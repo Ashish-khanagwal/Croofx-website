@@ -68,8 +68,8 @@ export default function Home() {
                 className="text-sm text-white/80 hover:underline underline-offset-4 transition"
                 style={{
                   fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                  fontSize: "15px",
-                  fontWeight: 400,
+                  fontSize: "16px",
+                  fontWeight: 700,
                   lineHeight: "21px",
                 }}
               >
@@ -83,8 +83,8 @@ export default function Home() {
                 className="text-sm text-white/80 hover:underline underline-offset-4 transition"
                 style={{
                   fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                  fontSize: "15px",
-                  fontWeight: 400,
+                  fontSize: "16px",
+                  fontWeight: 700,
                   lineHeight: "21px",
                 }}
               >
@@ -98,18 +98,18 @@ export default function Home() {
                 className="text-sm text-white/80 hover:underline underline-offset-4 transition"
                 style={{
                   fontFamily: '"Anthropic Sans", Arial, sans-serif',
-                  fontSize: "15px",
-                  fontWeight: 400,
+                  fontSize: "16px",
+                  fontWeight: 700,
                   lineHeight: "21px",
                 }}
               >
                 Founder
               </a>
 
-              <button
-                onClick={scrollToCroofx}
-                className="px-5 py-2 rounded-md border border-white/20 hover:border-purple-500 transition"
-              >
+            <button
+              onClick={scrollToCroofx}
+              className="px-5 py-2 rounded-md border border-white/20 hover:border-white/60 hover:shadow-[0_0_25px_rgba(255,255,255,0.45)] transition cursor-pointer"
+            >
                 Join Waitlist
               </button>
             </div>
@@ -223,7 +223,7 @@ export default function Home() {
         <section ref={croofxRef} className="px-6 py-24">
           <div className="max-w-5xl mx-auto text-center">
             <h1
-              className="-mt-8 font-[900]"
+              className="-mt-10 font-[900]"
               style={{
                 fontFamily: '"Anthropic Sans", Arial, sans-serif',
                 fontSize: "80px",
@@ -282,14 +282,14 @@ export default function Home() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    placeholder="Enter email"
+                    placeholder="Enter your email"
                     className="w-full bg-transparent px-6 py-3.5 text-sm sm:text-base focus:outline-none placeholder:text-white/50"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="sm:ml-3 px-7 py-3.5 rounded-full bg-white text-black text-sm sm:text-base font-medium whitespace-nowrap hover:bg-purple-500 hover:text-white transition shadow-[0_0_35px_rgba(255,255,255,0.35)]"
+                  className="sm:ml-3 px-7 py-3.5 rounded-full bg-white text-black text-sm sm:text-base font-medium whitespace-nowrap hover:bg-purple-500 hover:text-white hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition cursor-pointer"
                 >
                   Join Waitlist
                 </button>
@@ -301,10 +301,42 @@ export default function Home() {
               <div className="mt-8">
                 <div className="flex items-center justify-center gap-3">
                   <div className="flex -space-x-2">
-                    <div className="h-8 w-8 rounded-full border border-white/20 bg-[radial-gradient(circle_at_30%_0%,#f97316,transparent_50%),radial-gradient(circle_at_70%_100%,#facc15,transparent_55%)]" />
-                    <div className="h-8 w-8 rounded-full border border-white/20 bg-[radial-gradient(circle_at_30%_0%,#22c55e,transparent_50%),radial-gradient(circle_at_70%_100%,#a855f7,transparent_55%)]" />
-                    <div className="h-8 w-8 rounded-full border border-white/20 bg-[radial-gradient(circle_at_30%_0%,#0ea5e9,transparent_50%),radial-gradient(circle_at_70%_100%,#6366f1,transparent_55%)]" />
-                    <div className="h-8 w-8 rounded-full border border-white/20 bg-[radial-gradient(circle_at_30%_0%,#f472b6,transparent_50%),radial-gradient(circle_at_70%_100%,#f97316,transparent_55%)]" />
+                    <div className="h-8 w-8 rounded-full border border-white/30 bg-white/5 backdrop-blur-xl overflow-hidden shadow-[0_0_18px_rgba(0,0,0,0.6)]">
+                      <Image
+                        src="/avatar-1.jpg"
+                        alt="Early Croofx user 1"
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="h-8 w-8 rounded-full border border-white/30 bg-white/5 backdrop-blur-xl overflow-hidden shadow-[0_0_18px_rgba(0,0,0,0.6)]">
+                      <Image
+                        src="/avatar-2.jpg"
+                        alt="Early Croofx user 2"
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="h-8 w-8 rounded-full border border-white/30 bg-white/5 backdrop-blur-xl overflow-hidden shadow-[0_0_18px_rgba(0,0,0,0.6)]">
+                      <Image
+                        src="/avatar-3.jpg"
+                        alt="Early Croofx user 3"
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="h-8 w-8 rounded-full border border-white/30 bg-white/5 backdrop-blur-xl overflow-hidden shadow-[0_0_18px_rgba(0,0,0,0.6)]">
+                      <Image
+                        src="/avatar-4.jpg"
+                        alt="Early Croofx user 4"
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
                   </div>
 
                   <p className="text-xs sm:text-sm text-white/70">
@@ -317,6 +349,7 @@ export default function Home() {
                 <div className="mt-6 flex items-center justify-center gap-10">
                   <a
                     href="https://x.com/CrooviOfficial"
+                    target="_blank"
                     className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/5 backdrop-blur-xl opacity-80 hover:opacity-100 hover:border-white/70 hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] transition"
                     aria-label="Twitter / X"
                   >
@@ -329,6 +362,7 @@ export default function Home() {
                   </a>
                   <a
                     href="https://www.instagram.com/crooviofficial/"
+                    target="_blank"
                     className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/5 backdrop-blur-xl opacity-80 hover:opacity-100 hover:border-white/70 hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] transition"
                     aria-label="Instagram"
                   >
@@ -341,6 +375,7 @@ export default function Home() {
                   </a>
                   <a
                     href="https://discord.com/invite/6j37AVAcSH"
+                    target="_blank"
                     className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/5 backdrop-blur-xl opacity-80 hover:opacity-100 hover:border-white/70 hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] transition"
                     aria-label="Discord"
                   >
@@ -354,6 +389,7 @@ export default function Home() {
                   </a>
                   <a
                     href="https://github.com/croovi-org"
+                    target="_blank"
                     className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/5 backdrop-blur-xl opacity-80 hover:opacity-100 hover:border-white/70 hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] transition"
                     aria-label="GitHub"
                   >
