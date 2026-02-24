@@ -257,7 +257,14 @@ export default function Home() {
               production software
             </p>
 
-            <p className="mt-6 text-sm md:text-base text-white/60 max-w-2xl mx-auto">
+            <p className="mt-6 text-sm md:text-base text-white/60 max-w-2xl mx-auto"
+            style={{
+              fontFamily: '"Anthropic Sans", Arial, sans-serif',
+              fontSize: "18px",
+              fontWeight: 550,
+              lineHeight: "24px",
+            }}
+            >
               Understands your codebase, sends only the right context to LLMs,
               and validates every AI-generated change before it lands
             </p>
@@ -268,9 +275,15 @@ export default function Home() {
                 Join our waitlist!
               </h3>
 
-              <p className="mt-3 text-sm sm:text-base text-white/70">
-                Sign up to receive the latest Croofx updates and product
-                insights straight to your inbox.
+              <p className="mt-3 text-sm sm:text-base text-white/70"
+              style={{
+                fontFamily: '"Anthropic Sans", Arial, sans-serif',
+                fontSize: "18px",
+                fontWeight: 400,
+                lineHeight: "24px",
+              }}
+              >
+              Early access for teams serious about shipping AI-driven code without production risk.
               </p>
 
               <form
